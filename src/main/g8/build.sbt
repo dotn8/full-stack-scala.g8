@@ -18,7 +18,7 @@ lazy val $server$ = (project in file("$server$")).settings(
   // Compile the project before generating Eclipse files, so that generated .scala or .class files for views and routes are present
   EclipseKeys.preTasks := Seq(compile in Compile)
 ).enablePlugins(PlayScala).
-  dependsOn(sharedJvm)
+  dependsOn($shared$Jvm)
 
 lazy val $client$ = (project in file("$client$")).settings(
   scalaVersion := scalaV,
@@ -34,9 +34,9 @@ lazy val $client$ = (project in file("$client$")).settings(
     "fr.hmil" %%% "roshttp" % "1.1.0"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
-  dependsOn(sharedJs)
+  dependsOn($shared$Js)
 
-lazy val shared = (crossProject.crossType(CrossType.Pure) in file("$shared$")).
+lazy val $shared$ = (crossProject.crossType(CrossType.Pure) in file("$shared$")).
   settings(scalaVersion := scalaV).
   jsConfigure(_ enablePlugins ScalaJSWeb)
 

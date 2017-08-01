@@ -1,4 +1,4 @@
-package shared
+package $shared$
 
 object SharedMessages {
   def itWorks = "It works!"

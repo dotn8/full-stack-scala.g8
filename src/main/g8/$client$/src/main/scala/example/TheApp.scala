@@ -1,5 +1,3 @@
-package example
-
 import com.thoughtworks.binding.Binding.Var
 import com.thoughtworks.binding.dom
 import org.scalajs.dom.document
@@ -10,11 +8,7 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 import scala.scalajs.js.JSON
 
-
-
-object ScalaJSExample extends js.JSApp {
-
-
+object TheApp extends js.JSApp {
   /**
     * Ajax Request to server, updates data state with number
     * of requests to count.
@@ -35,7 +29,7 @@ object ScalaJSExample extends js.JSApp {
       <button onclick={event: Event => countRequest(data) }>
         Boop
       </button>
-      From Play: The server has been booped { data.bind } times. Shared Message: {shared.SharedMessages.itWorks}.
+      From Play: The server has been booped { data.bind } times. Shared Message: {$shared$.SharedMessages.itWorks}.
     </div>
   }
 
