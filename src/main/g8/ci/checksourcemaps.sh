@@ -17,7 +17,7 @@ countScalaFiles
 nbScalaFilesNoSourceMaps=$?
 
 # produce archive with source maps
-sbt universal:packageBin "set emitSourceMaps in ($client$, fullOptJS) := true" "set emitSourceMaps in (sharedJs, fullOptJS) := true" universal:packageBin
+sbt universal:packageBin "set emitSourceMaps in ($client$, fullOptJS) := true" "set emitSourceMaps in ($shared$Js, fullOptJS) := true" universal:packageBin
 countScalaFiles
 nbScalaFilesWithSourceMaps=$?
 

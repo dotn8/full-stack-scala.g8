@@ -36,12 +36,12 @@ lazy val $client$ = (project in file("$client$")).settings(
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn(sharedJs)
 
-lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).
+lazy val shared = (crossProject.crossType(CrossType.Pure) in file("$shared$")).
   settings(scalaVersion := scalaV).
   jsConfigure(_ enablePlugins ScalaJSWeb)
 
-lazy val sharedJvm = shared.jvm
-lazy val sharedJs = shared.js
+lazy val $shared$Jvm = $shared$.jvm
+lazy val $shared$Js = $shared$.js
 
 // loads the $server$ project at sbt startup
 onLoad in Global := (Command.process("project $server$", _: State)) compose (onLoad in Global).value
