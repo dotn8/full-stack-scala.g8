@@ -2,14 +2,14 @@
 
 [![Join the chat at https://gitter.im/Full-Stack-Scala-Starter/Lobby](https://badges.gitter.im/Full-Stack-Scala-Starter/Lobby.svg)](https://gitter.im/Full-Stack-Scala-Starter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This is a simple example application showing how you can integrate a Play project with a Scala.js, Binding.scala project. 
+This is a simple example application showing how you can integrate a Play project with a Scala.js, Binding.scala project.
 
 Frontend communicates with backend via JSON. Project aims to be a simple modern starting point.
 
 The application contains three directories:
-* `server` Play application (server side)
-* `client` Scala.js, Binding.scala application (client side)
-* `shared` Scala code that you want to share between the server and the client
+* `$server$` Play application (server side)
+* `$client$` Scala.js, Binding.scala application (client side)
+* `$shared$` Scala code that you want to share between the server and the client
 
 ## Run the application
 ```shell
@@ -38,7 +38,7 @@ The application uses the [sbt-web-scalajs](https://github.com/vmunier/sbt-web-sc
 ### Eclipse
 
 1. `$ sbt "eclipse with-source=true"`
-2. Inside Eclipse, `File/Import/General/Existing project...`, choose the root folder. Uncheck the second and the last checkboxes to only import client, server and one shared, click `Finish`. ![Alt text](screenshots/eclipse-play-with-scalajs-example.png?raw=true "eclipse play-with-scalajs-example screenshot")
+2. Inside Eclipse, `File/Import/General/Existing project...`, choose the root folder. Uncheck the second and the last checkboxes to only import $client$, $server$ and one $shared$, click `Finish`. ![Alt text](screenshots/eclipse-play-with-scalajs-example.png?raw=true "eclipse play-with-scalajs-example screenshot")
 
 ### IntelliJ
 

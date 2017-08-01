@@ -1,8 +1,8 @@
 lazy val scalaV = "2.11.8"
 
-lazy val server = (project in file("server")).settings(
+lazy val $server$ = (project in file("$server$")).settings(
   scalaVersion := scalaV,
-  scalaJSProjects := Seq(client),
+  scalaJSProjects := Seq($client$),
   pipelineStages in Assets := Seq(scalaJSPipeline),
   pipelineStages := Seq(digest, gzip),
   // triggers scalaJSPipeline when using compile or continuous compilation
@@ -20,7 +20,7 @@ lazy val server = (project in file("server")).settings(
 ).enablePlugins(PlayScala).
   dependsOn(sharedJvm)
 
-lazy val client = (project in file("client")).settings(
+lazy val $client$ = (project in file("$client$")).settings(
   scalaVersion := scalaV,
   persistLauncher := true,
   scalacOptions ++= Seq("-Xmax-classfile-name","78"),
@@ -43,5 +43,5 @@ lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).
 lazy val sharedJvm = shared.jvm
 lazy val sharedJs = shared.js
 
-// loads the server project at sbt startup
-onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
+// loads the $server$ project at sbt startup
+onLoad in Global := (Command.process("project $server$", _: State)) compose (onLoad in Global).value
