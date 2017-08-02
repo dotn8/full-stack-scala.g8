@@ -21,6 +21,10 @@ object TheApp extends js.JSApp {
     }
   }
 
+  def autowireRequest(data: Var[String]) = {
+    MyClient[MyApi].doThing(3, "lol").call().foreach(println)
+  }
+
   @dom
   def render = {
     val data = Var("")
