@@ -1,4 +1,4 @@
-\#!/bin/sh
+#!/bin/sh
 
 baseDir="\$( cd "\$( dirname "\$0" )"/.. && pwd )"
 
@@ -11,12 +11,12 @@ countScalaFiles() {
 
 cd \$baseDir
 
-\# produce archive with no source maps
+# produce archive with no source maps
 sbt universal:packageBin
 countScalaFiles
 nbScalaFilesNoSourceMaps=\$?
 
-\# produce archive with source maps
+# produce archive with source maps
 sbt universal:packageBin "set emitSourceMaps in (\$client\$, fullOptJS) := true" "set emitSourceMaps in (\$shared\$Js, fullOptJS) := true" universal:packageBin
 countScalaFiles
 nbScalaFilesWithSourceMaps=\$?
