@@ -7,9 +7,9 @@ This is a simple example application showing how you can integrate a Play projec
 Frontend communicates with backend via JSON. Project aims to be a simple modern starting point.
 
 The application contains three directories:
-* `$server$` Play application (server side)
-* `$client$` Scala.js, Binding.scala application (client side)
-* `$shared$` Scala code that you want to share between the server and the client
+* $server$: Play application (server side)
+* $client$: Scala.js, Binding.scala application (client side)
+* $shared$: Scala code that you want to share between the server and the client
 
 ## Run the application
 ```shell
