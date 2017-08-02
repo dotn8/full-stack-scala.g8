@@ -1,4 +1,4 @@
-lazy val scalaV = "2.11.8"
+lazy val scalaV = "2.12.3"
 
 lazy val $server$ = (project in file("$server$")).settings(
   scalaVersion := scalaV,
@@ -9,9 +9,10 @@ lazy val $server$ = (project in file("$server$")).settings(
   compile in Compile <<= (compile in Compile) dependsOn scalaJSPipeline,
   libraryDependencies ++= Seq(
     "com.h2database" % "h2" % "1.4.192",
-    "com.typesafe.play" %% "play-slick" % "2.0.0",
-    "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
-    "com.vmunier" %% "scalajs-scripts" % "1.0.0",
+    "com.typesafe.play" %% "play-slick" % "3.0.0",
+    "com.typesafe.play" %% "play-slick-evolutions" % "3.0.0",
+    "com.vmunier" %% "scalajs-scripts" % "1.1.1",
+    guice,
     filters,
     specs2 % Test
   ),
@@ -28,10 +29,10 @@ lazy val $client$ = (project in file("$client$")).settings(
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-    "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.6",
-    "com.thoughtworks.binding" %%% "dom" % "10.0.0-M1",
-    "com.thoughtworks.binding" %%% "futurebinding" % "10.0.0-M1",
-    "fr.hmil" %%% "roshttp" % "1.1.0"
+    "org.scala-lang.modules" % "scala-xml_2.12" % "1.0.6",
+    "com.thoughtworks.binding" %%% "dom" % "11.0.0-M3",
+    "com.thoughtworks.binding" %%% "futurebinding" % "11.0.0-M3",
+    "fr.hmil" %%% "roshttp" % "2.0.2"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn($shared$Js)
