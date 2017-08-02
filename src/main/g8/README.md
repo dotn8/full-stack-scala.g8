@@ -1,4 +1,4 @@
-# Play Framework with Scala.js, Binding.scala
+\# Play Framework with Scala.js, Binding.scala
 
 [![Join the chat at https://gitter.im/Full-Stack-Scala-Starter/Lobby](https://badges.gitter.im/Full-Stack-Scala-Starter/Lobby.svg)](https://gitter.im/Full-Stack-Scala-Starter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -11,14 +11,14 @@ The application contains three directories:
 * `$client$` Scala.js, Binding.scala application (client side)
 * `$shared$` Scala code that you want to share between the server and the client
 
-## Run the application
+\#\# Run the application
 ```shell
-$ sbt
+\$ sbt
 > run
-$ open http://localhost:9000
+\$ open http://localhost:9000
 ```
 
-## Features
+\#\# Features
 
 The application uses the [sbt-web-scalajs](https://github.com/vmunier/sbt-web-scalajs) sbt plugin and the [scalajs-scripts](https://github.com/vmunier/scalajs-scripts) library.
 
@@ -33,14 +33,14 @@ The application uses the [sbt-web-scalajs](https://github.com/vmunier/sbt-web-sc
   - Source Maps is _disabled in production_ by default to prevent your users from seeing the source files. But it can easily be enabled in production too by setting `emitSourceMaps in fullOptJS := true` in the Scala.js projects.
 
 
-## IDE integration
+\#\# IDE integration
 
-### Eclipse
+\#\#\# Eclipse
 
-1. `$ sbt "eclipse with-source=true"`
+1. `\$ sbt "eclipse with-source=true"`
 2. Inside Eclipse, `File/Import/General/Existing project...`, choose the root folder. Uncheck the second and the last checkboxes to only import $client$, $server$ and one $shared$, click `Finish`. ![Alt text](screenshots/eclipse-play-with-scalajs-example.png?raw=true "eclipse play-with-scalajs-example screenshot")
 
-### IntelliJ
+\#\#\# IntelliJ
 
 In IntelliJ, open Project wizard, select `Import Project`, choose the root folder and click `OK`.
 Select `Import project from external model` option, choose `SBT project` and click `Next`. Select additional import options and click `Finish`.

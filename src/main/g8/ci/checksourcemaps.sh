@@ -1,28 +1,28 @@
-#!/bin/sh
+\#!/bin/sh
 
-baseDir="$( cd "$( dirname "$0" )"/.. && pwd )"
+baseDir="\$( cd "\$( dirname "\$0" )"/.. && pwd )"
 
 countScalaFiles() {
-  archive="$baseDir/$server$/target/universal/$server$-0.1-SNAPSHOT.zip"
-  unzip -o $archive
-  nbScalaFiles=$(unzip -l "$server$-0.1-SNAPSHOT/lib/*$server$*.jar" | grep ".*\.scala$" | wc -l)
-  return "$nbScalaFiles"
+  archive="\$baseDir/\$server\$/target/universal/\$server\$-0.1-SNAPSHOT.zip"
+  unzip -o \$archive
+  nbScalaFiles=\$(unzip -l "\$server\$-0.1-SNAPSHOT/lib/*\$server\$*.jar" | grep ".*\.scala\$" | wc -l)
+  return "\$nbScalaFiles"
 }
 
-cd $baseDir
+cd \$baseDir
 
-# produce archive with no source maps
+\# produce archive with no source maps
 sbt universal:packageBin
 countScalaFiles
-nbScalaFilesNoSourceMaps=$?
+nbScalaFilesNoSourceMaps=\$?
 
-# produce archive with source maps
-sbt universal:packageBin "set emitSourceMaps in ($client$, fullOptJS) := true" "set emitSourceMaps in ($shared$Js, fullOptJS) := true" universal:packageBin
+\# produce archive with source maps
+sbt universal:packageBin "set emitSourceMaps in (\$client\$, fullOptJS) := true" "set emitSourceMaps in (\$shared\$Js, fullOptJS) := true" universal:packageBin
 countScalaFiles
-nbScalaFilesWithSourceMaps=$?
+nbScalaFilesWithSourceMaps=\$?
 
 echo "-- RESULTS --"
-echo "Number of Scala files with source maps disabled: $nbScalaFilesNoSourceMaps (0 expected)"
-echo "Number of Scala files with source maps enabled: $nbScalaFilesWithSourceMaps (>0 expected)"
+echo "Number of Scala files with source maps disabled: \$nbScalaFilesNoSourceMaps (0 expected)"
+echo "Number of Scala files with source maps enabled: \$nbScalaFilesWithSourceMaps (>0 expected)"
 
-[ "$nbScalaFilesNoSourceMaps" -eq "0" ] && [ "$nbScalaFilesWithSourceMaps" -gt "0" ]
+[ "\$nbScalaFilesNoSourceMaps" -eq "0" ] && [ "\$nbScalaFilesWithSourceMaps" -gt "0" ]
