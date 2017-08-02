@@ -34,7 +34,7 @@ lazy val $client$ = (project in file("$client$")).settings(
     "com.thoughtworks.binding" %%% "dom" % "11.0.0-M3",
     "com.thoughtworks.binding" %%% "futurebinding" % "11.0.0-M3",
     "com.lihaoyi" %%% "autowire" % "0.2.6",
-    "fr.hmil" %%% "roshttp" % "2.0.2Z"
+    "fr.hmil" %%% "roshttp" % "2.0.2"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn($shared$Js)
