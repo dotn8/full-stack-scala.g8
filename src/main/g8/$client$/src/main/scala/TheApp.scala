@@ -42,7 +42,7 @@ object TheApp extends js.JSApp {
       <button onclick={event: Event => countRequest(data) }>
         Boop
       </button>
-      From Play: The server has been booped { data.bind } times. Shared Message: {shared.SharedMessages.itWorks}.
+      From Play: The server has been booped { data.bind } times. Shared Message: {$shared$.SharedMessages.itWorks}.
     </div>
   }
 
