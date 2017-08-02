@@ -8,6 +8,10 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 import scala.scalajs.js.JSON
 
+import autowire._
+import $shared$._
+import boopickle.Default._
+
 object TheApp extends js.JSApp {
   /**
     * Ajax Request to server, updates data state with number
@@ -19,10 +23,15 @@ object TheApp extends js.JSApp {
     Ajax.get(url).onSuccess { case xhr =>
       data := JSON.parse(xhr.responseText).count.toString
     }
+    val a = AjaxClient[TheApi].doThing(1, "a").call()
+    a.foreach(str => {
+      println(str)
+    })
   }
 
   def autowireRequest(data: Var[String]) = {
-    MyClient[MyApi].doThing(3, "lol").call().foreach(println)
+    val a = AjaxClient[TheApi].doThing(1, "a").call()
+    println(a)
   }
 
   @dom
@@ -33,7 +42,7 @@ object TheApp extends js.JSApp {
       <button onclick={event: Event => countRequest(data) }>
         Boop
       </button>
-      From Play: The server has been booped { data.bind } times. Shared Message: {$shared$.SharedMessages.itWorks}.
+      From Play: The server has been booped { data.bind } times. Shared Message: {shared.SharedMessages.itWorks}.
     </div>
   }
 
