@@ -6,7 +6,7 @@ lazy val $server$ = (project in file("$server$")).settings(
   pipelineStages in Assets := Seq(scalaJSPipeline),
   pipelineStages := Seq(digest, gzip),
   // triggers scalaJSPipeline when using compile or continuous compilation
-  compile in Compile <<= (compile in Compile) dependsOn scalaJSPipeline,
+  compile in Compile := (compile in Compile).dependsOn(scalaJSPipeline).value,
   libraryDependencies ++= Seq(
     "com.h2database" % "h2" % "1.4.196",
     "com.typesafe.play" %% "play-slick" % "3.0.0",
@@ -25,9 +25,9 @@ lazy val $server$ = (project in file("$server$")).settings(
 
 lazy val $client$ = (project in file("$client$")).settings(
   scalaVersion := scalaV,
-  persistLauncher := true,
+  scalaJSUseMainModuleInitializer := true,
   scalacOptions ++= Seq("-Xmax-classfile-name","78"),
-  persistLauncher in Test := false,
+  scalaJSUseMainModuleInitializer in Test := false,
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
