@@ -30,7 +30,6 @@ lazy val $client$ = (project in file("$client$")).settings(
   scalaJSUseMainModuleInitializer in Test := false,
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.1",
     "org.scala-lang.modules" % "scala-xml_2.12" % "1.0.6",
     "com.thoughtworks.binding" %%% "dom" % "11.0.0-M3",
     "com.thoughtworks.binding" %%% "futurebinding" % "11.0.0-M3",
