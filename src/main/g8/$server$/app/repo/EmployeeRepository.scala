@@ -2,11 +2,11 @@ package repo
 
 import javax.inject.{Inject, Singleton}
 
-import models.Employee
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.driver.JdbcProfile
 
 import scala.concurrent.Future
+import $shared$._
 
 @Singleton()
 class EmployeeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends EmployeeTable with HasDatabaseConfigProvider[JdbcProfile] {
@@ -62,4 +62,3 @@ private[repo] trait EmployeeTable {
   }
 
 }
-

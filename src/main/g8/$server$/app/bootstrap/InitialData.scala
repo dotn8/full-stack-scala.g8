@@ -3,12 +3,13 @@ package bootstrap
 import com.google.inject.Inject
 import javax.inject.Singleton
 import repo.EmployeeRepository
-import models.Employee
 import java.util.Date
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.Logger
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+
+import $shared$._
 
 class InitialData @Inject() (employeeRepo: EmployeeRepository) {
 

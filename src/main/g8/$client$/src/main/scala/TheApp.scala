@@ -23,14 +23,14 @@ object TheApp extends js.JSApp {
     Ajax.get(url).onSuccess { case xhr =>
       data := JSON.parse(xhr.responseText).count.toString
     }
-    val a = AjaxClient[TheApi].doThing(1, "a").call()
+    val a = AjaxClient[TheApi].getAll().call()
     a.foreach(str => {
       println(str)
     })
   }
 
   def autowireRequest(data: Var[String]) = {
-    val a = AjaxClient[TheApi].doThing(1, "a").call()
+    val a = AjaxClient[TheApi].getAll().call()
     println(a)
   }
 
