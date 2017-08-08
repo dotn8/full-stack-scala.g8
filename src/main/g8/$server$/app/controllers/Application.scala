@@ -3,11 +3,11 @@ package controllers
 import javax.inject._
 
 import play.api.mvc._
-import $shared$.SharedMessages
+import $shared$.Messages
 
 class Application @Inject() extends Controller {
 
   def index = Action {
-    Ok(views.html.index(SharedMessages.itWorks))
+    Ok(views.html.index(Messages.itWorks))
   }
 }
