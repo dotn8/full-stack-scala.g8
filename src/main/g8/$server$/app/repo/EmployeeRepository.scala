@@ -46,7 +46,13 @@ private[repo] trait EmployeeTable {
 
   import driver.api._
 
-  lazy protected val empTableQuery = TableQuery[EmployeeTable]
+  protected def getTableQuery() = {
+    val result = TableQuery[EmployeeTable]
+    db.run(result.schema.create)
+    result
+  }
+
+  lazy protected val empTableQuery = getTableQuery()
   lazy protected val empTableQueryInc = empTableQuery returning empTableQuery.map(_.id)
 
   private[EmployeeTable] class EmployeeTable(tag: Tag) extends Table[Employee](tag, "employee") {
