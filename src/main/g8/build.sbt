@@ -14,7 +14,7 @@ lazy val $server$ = (project in file("$server$")).settings(
     "com.vmunier" %% "scalajs-scripts" % "1.1.1",
     "com.lihaoyi" %% "autowire" % "0.2.6",
     "io.suzaku" %% "boopickle" % "1.2.6",
-    guice,
+    guice,//"com.google.inject" %% "guice" % "22.0",
     filters,
     specs2 % Test
   ),
