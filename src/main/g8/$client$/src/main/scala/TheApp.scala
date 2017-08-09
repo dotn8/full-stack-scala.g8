@@ -12,6 +12,9 @@ import autowire._
 import $shared$._
 import boopickle.Default._
 
+import com.thoughtworks.binding.Binding
+import org.scalajs.dom.raw.HTMLElement
+
 object TheApp extends js.JSApp {
   /**
     * Ajax Request to server, updates data state with number
@@ -35,7 +38,7 @@ object TheApp extends js.JSApp {
   }
 
   @dom
-  def render = {
+  def render: Binding[HTMLElement] = {
     val data = Var("")
     countRequest(data) // initial population
     <div>

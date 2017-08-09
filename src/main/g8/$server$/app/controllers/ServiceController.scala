@@ -1,15 +1,17 @@
 package controllers
 
 import java.nio.ByteBuffer
+import javax.inject._
 
 import akka.util.ByteString
 import boopickle.Default.Unpickle
-import play.api.mvc.{Controller, RawBuffer, Request}
+import play.api._
+import play.api.mvc._
 
 import boopickle.Default._ // Implicit pickler
 import scala.concurrent.ExecutionContext.Implicits.global
 
-trait ServiceController extends Controller {
+class ServiceController(val parsers: PlayBodyParsers, val cc: ControllerComponents) extends AbstractController(cc) {
   /**
     * Helper for internal routing
     * @param path
@@ -18,7 +20,7 @@ trait ServiceController extends Controller {
     * @return
     */
   protected def internalRoute(path: String, request: Request[RawBuffer])(router: => AutowireRouter.Router) = {
-    val b: ByteString = request.body.asBytes(parse.UNLIMITED).get
+    val b: ByteString = request.body.asBytes(parsers.UNLIMITED).get
     router(
       autowire.Core.Request(path.split("/"), Unpickle[Map[String, ByteBuffer]].fromBytes(b.asByteBuffer))
     ).map(buffer => {
