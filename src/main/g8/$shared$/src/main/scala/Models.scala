@@ -1,6 +1,6 @@
 package $shared$
 
-case class Employee(name: String,
+case class Todo(name: String,
   email: String,
   companyName: String,
   position: String,

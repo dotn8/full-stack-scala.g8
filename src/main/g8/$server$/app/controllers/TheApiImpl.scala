@@ -16,20 +16,20 @@ import repo._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class TheApiImpl(val empRepository: EmployeeRepository) extends TheApi {
-  def insert(employee: Employee): Int = {
+class TheApiImpl(val empRepository: TodoRepository) extends TheApi {
+  def insert(todo: Todo): Int = {
     println("Server-side API was called")
-    Await.result(empRepository.insert(employee), 10.seconds)
+    Await.result(empRepository.insert(todo), 10.seconds)
   }
 
-  def insertAll(employees: List[Employee]): Seq[Int] = {
+  def insertAll(todos: List[Todo]): Seq[Int] = {
     println("Server-side API was called")
-    Await.result(empRepository.insertAll(employees), 10.seconds)
+    Await.result(empRepository.insertAll(todos), 10.seconds)
   }
 
-  def update(employee: Employee): Int = {
+  def update(todo: Todo): Int = {
     println("Server-side API was called")
-    Await.result(empRepository.update(employee), 10.seconds)
+    Await.result(empRepository.update(todo), 10.seconds)
   }
 
   def delete(id: Int): Int = {
@@ -37,12 +37,12 @@ class TheApiImpl(val empRepository: EmployeeRepository) extends TheApi {
     Await.result(empRepository.delete(id), 10.seconds)
   }
 
-  def getAll(): List[Employee] = {
+  def getAll(): List[Todo] = {
     println("Server-side API was called")
     Await.result(empRepository.getAll(), 10.seconds)
   }
 
-  def getById(empId: Int): Option[Employee] = {
+  def getById(empId: Int): Option[Todo] = {
     println("Server-side API was called")
     Await.result(empRepository.getById(empId), 10.seconds)
   }

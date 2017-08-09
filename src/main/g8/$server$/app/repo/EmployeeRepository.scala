@@ -9,31 +9,31 @@ import scala.concurrent.Future
 import $shared$._
 
 @Singleton()
-class EmployeeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends EmployeeTable with HasDatabaseConfigProvider[JdbcProfile] {
+class TodoRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends TodoTable with HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._
 
-  def insert(employee: Employee): Future[Int] = db.run {
-    empTableQueryInc += employee
+  def insert(todo: Todo): Future[Int] = db.run {
+    empTableQueryInc += todo
   }
 
-  def insertAll(employees: List[Employee]): Future[Seq[Int]] = db.run {
-    empTableQueryInc ++= employees
+  def insertAll(todos: List[Todo]): Future[Seq[Int]] = db.run {
+    empTableQueryInc ++= todos
   }
 
-  def update(employee: Employee): Future[Int] = db.run {
-    empTableQuery.filter(_.id === employee.id).update(employee)
+  def update(todo: Todo): Future[Int] = db.run {
+    empTableQuery.filter(_.id === todo.id).update(todo)
   }
 
   def delete(id: Int): Future[Int] = db.run {
     empTableQuery.filter(_.id === id).delete
   }
 
-  def getAll(): Future[List[Employee]] = db.run {
+  def getAll(): Future[List[Todo]] = db.run {
     empTableQuery.to[List].result
   }
 
-  def getById(empId: Int): Future[Option[Employee]] = db.run {
+  def getById(empId: Int): Future[Option[Todo]] = db.run {
     empTableQuery.filter(_.id === empId).result.headOption
   }
 
@@ -41,13 +41,13 @@ class EmployeeRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
 
 }
 
-private[repo] trait EmployeeTable {
+private[repo] trait TodoTable {
   self: HasDatabaseConfigProvider[JdbcProfile] =>
 
   import profile.api._
 
   protected def getTableQuery() = {
-    val result = TableQuery[EmployeeTable]
+    val result = TableQuery[TodoTable]
     db.run(result.schema.create)
     result
   }
@@ -55,7 +55,7 @@ private[repo] trait EmployeeTable {
   lazy protected val empTableQuery = getTableQuery()
   lazy protected val empTableQueryInc = empTableQuery returning empTableQuery.map(_.id)
 
-  private[EmployeeTable] class EmployeeTable(tag: Tag) extends Table[Employee](tag, "employee") {
+  private[TodoTable] class TodoTable(tag: Tag) extends Table[Todo](tag, "todo") {
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
     val name: Rep[String] = column[String]("name", O.SqlType("VARCHAR(200)"))
     val email: Rep[String] = column[String]("email", O.SqlType("VARCHAR(200)"))
@@ -64,7 +64,7 @@ private[repo] trait EmployeeTable {
 
     def emailUnique = index("email_unique_key", email, unique = true)
 
-    def * = (name, email, companyName, position, id.?) <>(Employee.tupled, Employee.unapply)
+    def * = (name, email, companyName, position, id.?) <>(Todo.tupled, Todo.unapply)
   }
 
 }

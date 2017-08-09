@@ -1,10 +1,10 @@
 package $shared$
 
 trait TheApi {
-  def insert(employee: Employee): Int
-  def insertAll(employees: List[Employee]): Seq[Int]
-  def update(employee: Employee): Int
+  def insert(todo: Todo): Int
+  def insertAll(todos: List[Todo]): Seq[Int]
+  def update(todo: Todo): Int
   def delete(id: Int): Int
-  def getAll(): List[Employee]
-  def getById(empId: Int): Option[Employee]
+  def getAll(): List[Todo]
+  def getById(empId: Int): Option[Todo]
 }
